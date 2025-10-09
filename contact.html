@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="nl">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <link rel="icon" type="x-icon" href="img/lmns_round.svg">
+  <title>Contact - Luminos</title>
+  <link rel="stylesheet" href="css/styles.css">
+  <script src="https://kit.fontawesome.com/2481caf917.js" crossorigin="anonymous" defer></script>
+</head>
+
+<body>
+  <header>
+    <div class="navbar" id="main-navbar">
+      <div class="logo" href="#"><img src="img/lmns_short_star2.svg" alt=""></div>
+      <ul class="nav-links">
+        <a href="/">Home</a>
+        <a href="/about">Over Ons</a>
+        <a href="/pricing">Tarieven</a>
+        <a href="/photos">Foto's</a>
+        <a href="/contact" class="active">Contact</a>
+      </ul>
+      <a href="javascript:void(0);" class="icon" onclick="toggleNavbar()">
+        <i class="fa fa-bars"></i>
+      </a>
+    </div>
+  </header>
+
+  <!-- Hero -->
+
+  <section class="hero" style="padding: 0; max-height: 450px;">
+    <div class="hero-inner">
+      <div class="hero-copy">
+        <h2>Neem contact met ons op</h2>
+        <p>Heb je vragen over tuning, onderhoud of wil je een afspraak maken? Vul hieronder ons formulier in en wij
+          reageren zo snel mogelijk.</p>
+      </div>
+      <div class="hero-media">
+        <img src="img/lmns_round.svg" alt="Contact Luminos">
+      </div>
+    </div>
+  </section>
+
+  <!-- Contact Form -->
+  <section class="contact-form-section">
+    <div class="form-wrap">
+      <form id="contact-form" method="POST" action="contact.php">
+        <div class="form-row">
+          <label for="name">Naam</label>
+          <input type="text" id="name" name="name" required>
+        </div>
+
+        <div class="form-row">
+          <label for="email">E-mailadres</label>
+          <input type="email" id="email" name="email" required>
+        </div>
+
+        <div class="form-row">
+          <label for="phone">Telefoonnummer (optioneel)</label>
+          <input type="tel" id="phone" name="phone">
+        </div>
+
+        <div class="form-row">
+          <label for="message">Bericht</label>
+          <textarea id="message" name="message" rows="5" required></textarea>
+        </div>
+
+        <div class="form-row">
+          <button type="submit" class="btn btn-primary">Verstuur</button>
+        </div>
+      </form>
+      <div id="form-success" class="form-success" style="display:none;">
+        ✅ Bedankt! Je bericht is verzonden.
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+   <footer>
+    <div class="footer-top">
+      <div class="footer-left">
+        <a class="footer-logo" href="/"><img src="img/lmns_short_star2.svg" alt="Luminos logo"></a>
+        <p class="footer-desc">Luminos — specialist in scooter tuning en onderhoud. Afspraak nodig? Bel of mail ons, of
+          maak direct een afspraak online.</p>
+        <div class="footer-socials">
+          <a href="https://www.tiktok.com/@luminos_nl" aria-label="Tiktok"><i class="fa-brands fa-tiktok"></i></a>
+          <a href="https://x.com/Luminos_nl" aria-label="Twitter"><i class="fa-brands fa-x-twitter"></i></a>
+          <a href="https://instagram.com/luminos_nl" aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a>
+        </div>
+      </div>
+
+      
+
+      <div class="footer-downloads">
+        <h4>Maak een afspraak</h4>
+        <div class="download-cards">
+          <div class="card">
+            <h5>Contact</h5>
+            <p>Neem contact op en maak direct een afspraak</p>
+            <a href="/contact" class="btn btn-primary">Afspraak Maken</a>
+          </div>
+        </div>
+      </div>
+      <div class="footer-links">
+        <h4>Luminos</h4>
+        <a href="/">Home</a>
+        <a href="/about">Over Ons</a>
+        <a href="/pricing">Tarieven</a>
+        <a href="/photos">Foto's</a>
+        <a href="/contact">Contact</a>
+      </div>
+    </div>
+
+    <div class="footer-bottom">
+      <div class="legal">© 2025 Luminos. Alle rechten voorbehouden.</div>
+    </div>
+  </footer>
+
+  <!-- JS -->
+  <script>
+    document.getElementById("contact-form").addEventListener("submit", async function (e) {
+      e.preventDefault();
+      const formData = new FormData(this);
+
+      const response = await fetch("contact.php", {
+        method: "POST",
+        body: formData
+      });
+
+      const result = await response.json();
+      if (result.success) {
+        document.getElementById("form-success").style.display = "block";
+        this.reset();
+      } else {
+        alert("Er ging iets mis, probeer opnieuw.");
+      }
+    });
+
+    function toggleNavbar() {
+      document.getElementById("main-navbar").classList.toggle("responsive");
+    }
+  </script>
+</body>
+
+</html>

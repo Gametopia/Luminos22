@@ -1,0 +1,25 @@
+# Schakel rewrite in
+RewriteEngine On
+
+# Als bestand of map echt bestaat (css, js, img, 404.html) → gewoon laden
+RewriteCond %{REQUEST_FILENAME} -f [OR]
+RewriteCond %{REQUEST_FILENAME} -d
+RewriteRule ^ - [L]
+
+# Root (/) → home.html
+RewriteRule ^$ home.html [L]
+
+# /home → home.html
+# RewriteRule ^home/?$ home.html [L]
+
+# Toegestane pagina's → map naar .html bestanden
+RewriteRule ^about/?$ about.html [L]
+RewriteRule ^contact/?$ contact.html [L]
+RewriteRule ^pricing/?$ pricing.html [L]
+RewriteRule ^photos/?$ photos.html [L]
+
+# Alles anders → 404
+RewriteRule ^.*$ - [R=404,L]
+
+# Custom 404 pagina
+ErrorDocument 404 /404.html
