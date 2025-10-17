@@ -40,6 +40,7 @@ body {
 }
 
 .navbar a {
+  border-radius: 5px;
   display: block;
   color: #0328EE;
   text-align: center;
