@@ -8,7 +8,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     $message = htmlspecialchars($_POST["message"]);
 
     // ✅ Zet hier jouw Slack webhook URL
-    $webhook_url = "https://hooks.slack.com/services/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";
+    $webhook_url = "https://hooks.slack.com/services/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";
 
     $payload = json_encode([
         "text" => "📩 Nieuw bericht via contactformulier:\n\n*Naam:* $name\n*Email:* $email\n*Telefoonnummer:* $phone\n*Bericht:* $message"
